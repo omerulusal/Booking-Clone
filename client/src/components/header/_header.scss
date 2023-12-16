@@ -1,0 +1,31 @@
+$clr: #003580;
+
+.header {
+    background-color: $clr;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    .headerContainer {
+        width: 100%;
+        max-width: 1024px;
+        margin: 20px 0px 100px 0px;
+        .headerList {
+            display: flex;
+            gap: 40px;
+            .headerListItem {
+                &.active{
+                    border: 1px solid white;
+                    padding: 10px;
+                    border-radius: 20px;
+                }
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                span {}
+            }
+        }
+    }
+}
