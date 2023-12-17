@@ -1,0 +1,189 @@
+.hotelContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .slider {
+        position: relative;
+        overflow: hidden;
+        .sliderImg{
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .arrowLeft {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0px 10px;
+            margin: auto;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .arrowRight {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            padding: 0px 10px;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1;
+        }
+    }
+
+    .hotelWrapper {
+        width: 100%;
+        max-width: 1024px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+
+        #hotelReserveButton {
+            position: absolute;
+            top: 10;
+            right: 0;
+            background-color: #0071c2;
+            color: white;
+            font-weight: 500;
+            padding: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hotelTitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hotelAddress {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hotelDistance {
+            color: #0071c2;
+            font-weight: 500;
+        }
+
+        .hotelPriceHighlight {
+            color: #008009;
+            font-weight: 500;
+        }
+
+        .hotelImages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .hotelImgWrapper {
+                width: 33%;
+                object-fit: cover;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .hotelDetails {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 10px;
+
+            .hotelDetailsTexts {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .hotelTitle {
+                    font-size: 24px;
+                    font-weight: 300;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                    margin-bottom: 10px;
+                    color: #0071c2;
+                    text-align: center;
+                    width: 100%;
+                    max-width: 1024px;
+                }
+
+                .hotelDesc {
+                    font-weight: 300;
+                    font-size: 14px;
+                    color: gray;
+                    padding: 10px;
+                    width: 100%;
+                    max-width: 1024px;
+                }
+            }
+
+            .hotelDetailsPrice {
+                background-color: #ebf3ff;
+                border-radius: 5px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .hotelTitle {
+                    font-size: 24px;
+                    font-weight: 300;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    max-width: 1024px;
+                }
+
+                .hotelDesc {
+                    font-weight: 300;
+                    font-size: 14px;
+                    color: gray;
+                    padding: 10px;
+                }
+
+                .hotelPrice {
+                    font-size: 24px;
+                    font-weight: 300;
+                    color: #008009;
+                }
+
+                .hotelReserveButton {
+                    background-color: #0071c2;
+                    color: white;
+                    font-weight: 500;
+                    padding: 10px 5px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

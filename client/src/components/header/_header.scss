@@ -12,11 +12,10 @@ $clr: #003580;
     .headerContainer {
         width: 100%;
         max-width: 1024px;
-        margin: 20px 0px 100px 0px;
+        margin: 20px 0px 60px 0px;
 
         .headerList {
             display: flex;
-            margin-bottom: 50px;
             gap: 40px;
 
             .headerListItem {
@@ -30,11 +29,17 @@ $clr: #003580;
                 align-items: center;
                 gap: 10px;
 
-                span {}
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
             }
         }
 
-        .headerTitle {}
+        .headerTitle {
+            font-size: 24px;
+            font-weight: 300;
+        }
 
         .headerDesc {
             margin: 20px 0px;
