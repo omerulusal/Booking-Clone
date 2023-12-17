@@ -1,0 +1,63 @@
+.headerIcon {
+    color: lightgray;
+}
+
+.headerSearchInput {
+    border: none;
+    outline: none;
+}
+
+.headerSearchText {
+    color: lightgray;
+    cursor: pointer;
+}
+
+.options {
+    right: 100px;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0px 0px 10px -5px gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+    width: 300px;
+
+    .optionItem {
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px;
+
+
+        .optionText {
+            color: gray;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 100px;
+        }
+
+        .optionCounterBtn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #0071c2;
+            color: #0071c2;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .optionCounterNumber {
+            color: #0071c2;
+            font-size: 12px;
+            margin: 0px 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+        }
+    }
+}
