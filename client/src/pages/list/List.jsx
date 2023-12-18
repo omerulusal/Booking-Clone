@@ -5,13 +5,15 @@ import Header from "../../components/header/Header"
 import { useLocation } from "react-router-dom"
 import { format } from 'date-fns'
 import { DateRange } from 'react-date-range'
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css';
 import SearchItem from '../../components/searchItem/SearchItem'
+import useFetch from "../../hooks/useFetch.js"
+
 const List = () => {
     const location = useLocation()
     const [destination, setDestination] = useState(location.state?.destination || '');
-    const [date, setDate] = useState(location.state?.date || [
+    const [dates, setDates] = useState(location.state?.dates || [
         {
             startDate: new Date(),
             endDate: new Date(),
@@ -23,7 +25,15 @@ const List = () => {
         children: 0,
         room: 0
     }]);
+    const [min, setMin] = useState(undefined);
+    const [max, setMax] = useState(undefined);
     const [display, setDisplay] = useState(true);
+    const { data, loading, error, reFetch } = useFetch(`http://localhost:8800/api/hotels?city=${destination}&min={min || 0}&max={max || 999 }`);
+
+    const handleClick = () => {
+        reFetch()
+    }
+
     return (
         <div>
             <Navbar />
@@ -39,15 +49,15 @@ const List = () => {
                         <div className="lsItem">
                             <label>Check-in Date</label>
                             <span className='lsItemSpan'>
-                                <span onClick={() => setDisplay(!display)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`} </span>
+                                <span onClick={() => setDisplay(!display)}>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`} </span>
                             </span>
                             <div className="date">
                                 {display && <DateRange
-                                    onChange={item => setDate([item.selection])}
+                                    onChange={item => setDates([item.selection])}
                                     showSelectionPreview={true}
                                     moveRangeOnFirstSelection={false}
                                     months={1}
-                                    ranges={date}
+                                    ranges={dates}
                                     direction="horizontal"
                                     className="date"
                                 />}
@@ -57,11 +67,11 @@ const List = () => {
                             <label>Options</label>
                             <div className="lsOptionItem">
                                 <span className='lsOptionText'>Min price <small>per night</small></span>
-                                <input type="number" className='lsOptionInput' />
+                                <input type="number" onChange={(e) => setMin(e.target.value)} className='lsOptionInput' />
                             </div>
                             <div className="lsOptionItem">
                                 <span className='lsOptionText'>Max price <small>per night</small></span>
-                                <input type="number" className='lsOptionInput' />
+                                <input type="number" onChange={(e) => setMax(e.target.value)} className='lsOptionInput' />
                             </div>
                             <div className="lsOptionItem">
                                 <span className='lsOptionText'>Adult</span>
@@ -76,10 +86,16 @@ const List = () => {
                                 <input min={1} max={5} type="number" className='lsOptionInput' placeholder={options.room} />
                             </div>
                         </div>
-                        <button className='lsButton'>Search</button>
+                        <button onClick={handleClick} className='lsButton'>Search</button>
                     </div>
                     <div className="listResult">
-                        <SearchItem />
+                        {loading ? "loading" : (
+                            <>
+                                {data?.map(item => (
+                                    <SearchItem item={item} key={item._id} />
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

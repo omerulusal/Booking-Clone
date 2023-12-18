@@ -1,37 +1,24 @@
 import "./_featuredPrpts.scss"
+import useFetch from "../../hooks/useFetch.js"
 const FeaturedPrpts = () => {
+    const { data, loading, error } = useFetch("http://localhost:8800/api/hotels?featured=true&limit=4");
+    console.log(data)
     return (
         <div className="fp">
-            <div className="fpItem">
-                <img src="https://cf.bstatic.com/xdata/images/city/600x600/977192.jpg?k=9b5deb1736f05b131436cd8ee666e23a766e74c39720fce87cec8677238fe207&o=" alt="img" />
-                <span className="fpName">Aparthotel Stare Miasto</span>
-                <span className="fpCity">Madrid</span>
-                <span className="fpPrice">Starting from $150</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src="https://cf.bstatic.com/xdata/images/city/600x600/977192.jpg?k=9b5deb1736f05b131436cd8ee666e23a766e74c39720fce87cec8677238fe207&o=" alt="img" />
-                <span className="fpName">Aparthotel Stare Miasto</span>
-                <span className="fpCity">Madrid</span>
-                <span className="fpPrice">Starting from $150</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src="https://cf.bstatic.com/xdata/images/city/600x600/977192.jpg?k=9b5deb1736f05b131436cd8ee666e23a766e74c39720fce87cec8677238fe207&o=" alt="img" />
-                <span className="fpName">Aparthotel Stare Miasto</span>
-                <span className="fpCity">Madrid</span>
-                <span className="fpPrice">Starting from $150</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
+            {loading ? ("Loading please wait") : <>
+                {data.map((item) => (
+                    <div className="fpItem" key={item._id}>
+                        <img src={item.photos[0]} alt="img" />
+                        <span className="fpName">{item.name}</span>
+                        <span className="fpCity">{item.city}</span>
+                        <span className="fpPrice">Starting from ${item.cheapestPrice}</span>
+                        {item.rating && <div className="fpRating">
+                            <button>{item.rating}</button>
+                            <span>Excellent</span>
+                        </div>}
+                    </div>
+                ))}
+            </>}
         </div>
     )
 }

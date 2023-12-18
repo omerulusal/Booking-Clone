@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./_header.scss"
@@ -8,23 +8,28 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'date-fns';
 import Options from "../options/Options";
+import {SearchContext} from "../../context/SearchContext.jsx";
 const Header = ({ type }) => {
 
     const navigate = useNavigate();
     const [destination, setDestination] = useState("")
-    const [date, setDate] = useState([
+    const [dates, setDates] = useState([
         {
             startDate: new Date(),
             endDate: new Date(),
             key: 'selection'
         }
     ]);
+    const { dispatch } = useContext(SearchContext)
     const handleSearch = () => {
-        navigate("/hotels", { state: { destination, date, Options } });
+        dispatch({ type: "NEW_SEARCH", payload: { destination, dates, Options } });
+        navigate("/hotels", { state: { destination, dates, Options } });
         // hotels sayfasına git ve state'e bilgilerini de aktar
     }
     const [display, setDisplay] = useState(false);
     // disardidan type propu aldım(List.jsx) ve type list'e eşit degilse görunur.
+
+
     return (
         <>
             {type !== "list" && <>
@@ -59,14 +64,14 @@ const Header = ({ type }) => {
                                 </div>
                                 <div className="headerSearchItem">
                                     <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
-                                    <span className="headerSearchText" onClick={() => setDisplay(!display)} > {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`} </span>
+                                    <span className="headerSearchText" onClick={() => setDisplay(!display)} > {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`} </span>
                                     {/* span içinde tarihleri yazdırdık */}
                                     {display && <DateRangePicker
-                                        onChange={item => setDate([item.selection])}
+                                        onChange={item => setDates([item.selection])}
                                         showSelectionPreview={true}
                                         moveRangeOnFirstSelection={false}
                                         months={1}
-                                        ranges={date}
+                                        ranges={dates}
                                         direction="horizontal"
                                         className="date"
                                     />}

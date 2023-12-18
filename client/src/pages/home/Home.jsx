@@ -10,7 +10,7 @@ import MailList from '../../components/mailList/MailList';
 
 const Home = () => {
     return (
-        <div className=''>
+        <div>
             <Navbar />
             <Header />
             <div className="homeContainer">
