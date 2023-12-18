@@ -9,10 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 import useFetch from "../../hooks/useFetch"
 import { SearchContext } from "../../context/SearchContext.jsx"
-
+import { AuthContext } from "../../context/AuthContext.jsx"
+import { useNavigate } from "react-router-dom"
+import Reserve from "../../components/modal/Reserve.jsx"
 const Hotel = () => {
     const [slideNumber, setSlideNumber] = useState(0)
     const [open, setOpen] = useState(false)
+    const [modal, setModal] = useState(false)
     const handleOpen = (i) => {
         setSlideNumber(i)
         setOpen(true)
@@ -39,6 +42,16 @@ const Hotel = () => {
         const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
     }
     // const days = dayDifference(dates[0].endDate, dates[0].startDate)
+
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const handleClick = () => {
+        if (user) {
+            setModal(true)
+        } else {
+            navigate("/login")
+        }
+    }
     return (
         <div>
             <Navbar />
@@ -87,7 +100,7 @@ const Hotel = () => {
                                     <h2 className="hotelPrice">
                                         <b>${data.cheapestPrice}</b> (9 nights)
                                     </h2>
-                                    <button className="hotelReserveButton">Reserve or Book Now!</button>
+                                    <button onClick={handleClick} className="hotelReserveButton">Reserve or Book Now!</button>
                                 </div>
                             </div>
                         </div>
@@ -95,6 +108,7 @@ const Hotel = () => {
                     </div>
                 </>}
             <Footer />
+            {modal && <Reserve setOpen={setModal} hotelId={id} />}
         </div>
     )
 }
