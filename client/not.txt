@@ -1,0 +1,4 @@
+backend ile iletişim için 
+pakage.jsonda private'in altına 
+  "proxy": "http://localhost:8800/api",
+  ekledim
