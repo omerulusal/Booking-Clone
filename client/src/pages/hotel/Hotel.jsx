@@ -92,13 +92,13 @@ const Hotel = () => {
                                     <p className="hotelDesc" id="hDsc" >{data.description}</p>
                                 </div>
                                 <div className="hotelDetailsPrice">
-                                    <h1 className="hotelTitle">Perfect for a 9-night stay!</h1>
+                                    <h1 className="hotelTitle">Perfect for a 3-night stay!</h1>
                                     <span className="hotelDesc">
-                                        Located in the real heart of Berlin, this property has an
+                                        Located in the real heart of {data.title }, this property has an
                                         excellent location score of 9.8!
                                     </span>
                                     <h2 className="hotelPrice">
-                                        <b>${data.cheapestPrice}</b> (9 nights)
+                                        <b>${data.cheapestPrice}</b> (3 nights)
                                     </h2>
                                     <button onClick={handleClick} className="hotelReserveButton">Reserve or Book Now!</button>
                                 </div>
