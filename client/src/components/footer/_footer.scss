@@ -1,9 +1,8 @@
 .footer {
-    background-color: #292929;
     grid-column: full-start / full-end;
-    padding: 10rem 0;
-    font-size: 1.4rem;
-    color: #f7f7f7;
+    padding: 4rem 0;
+    font-size: 1rem;
+    color: #003580;
 
     .fLists {
         display: grid;
@@ -19,13 +18,17 @@
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                font-size: 1.2rem;
+                font-size: .85rem;
                 transition: all .2s ease-in-out;
 
                 &:hover {
-                    color: #999;
+                    color: #0056cf;
                 }
             }
         }
+    }
+    .copy{
+        text-align: center;
+        margin-top: 2rem;
     }
 }
