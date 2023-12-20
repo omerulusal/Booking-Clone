@@ -7,8 +7,8 @@ export const createHotel = async (req, res, next) => {
     try {
         const savedHotel = await newHotel.save();
         // savedHotel'e save ile yeni otelin verisi eklendi
-        res.status(200).json(savedHotel);
-        // 200 kodu ile geri donduruldu ve ekrana yazdırıldı.
+        res.status(201).json(savedHotel);
+        // 201 kodu ile geri donduruldu ve ekrana yazdırıldı.
     } catch (err) {
         next(err)
     }
