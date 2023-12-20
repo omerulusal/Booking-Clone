@@ -6,7 +6,7 @@ import MailList from "../../components/mailList/MailList"
 import { useContext, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons"
 import useFetch from "../../hooks/useFetch"
 import { SearchContext } from "../../context/SearchContext.jsx"
 import { AuthContext } from "../../context/AuthContext.jsx"
@@ -71,7 +71,10 @@ const Hotel = () => {
                             <button id="hotelReserveButton">Reserve or Book Now!</button>
                             <h1 className="hotelTitle">{data.name}</h1>
                             <div className="hotelAddress">
-                                <span>{data.address}</span>
+                                <span>
+                                    <FontAwesomeIcon icon={faLocationDot} color="red" size="lg" style={{ marginRight: "5px" }} />
+                                    {data.address}
+                                </span>
                             </div>
                             <span className="hotelDistance">
                                 {data.distance}m from center
@@ -94,7 +97,7 @@ const Hotel = () => {
                                 <div className="hotelDetailsPrice">
                                     <h1 className="hotelTitle">Perfect for a 3-night stay!</h1>
                                     <span className="hotelDesc">
-                                        Located in the real heart of {data.title }, this property has an
+                                        Located in the real heart of {data.title}, this property has an
                                         excellent location score of 9.8!
                                     </span>
                                     <h2 className="hotelPrice">
