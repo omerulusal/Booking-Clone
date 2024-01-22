@@ -9,8 +9,9 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'date-fns';
 import Options from "../options/Options";
 import {SearchContext} from "../../context/SearchContext.jsx";
-const Header = ({ type }) => {
 
+const Header = ({ type }) => {
+    
     const navigate = useNavigate();
     const [destination, setDestination] = useState("")
     const [dates, setDates] = useState([

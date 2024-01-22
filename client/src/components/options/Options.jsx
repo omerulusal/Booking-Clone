@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 
 const Options = () => {
-    const [openOptions, setOpenOptions] = useState(false);
+    const [openOptions, setOpenOptions] = useState(false);//toogle gorevi gorucektir
     const [options, setOptions] = useState({
         adult: 1,
         children: 0,
